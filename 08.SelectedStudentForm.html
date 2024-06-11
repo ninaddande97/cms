@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS - Selected Student Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
+            color: #932323;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(25, 0, 10, 0.7);
+            padding: 1em;
+            z-index: 10;
+            position: sticky;
+            top: 0;
+        }
+
+        .logo {
+            margin-left: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 65px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #eef2f6;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5em;
+            cursor: pointer;
+        }
+
+        nav ul li a:hover {
+            color: #ff7e5f;
+        }
+
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 2.5em;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1em;
+            border-radius: 5px;
+            list-style: none;
+            z-index: 20;
+        }
+
+        nav ul li ul li {
+            margin: 0;
+        }
+
+        nav ul li ul li ul {
+            left: 100%;
+            top: 0;
+        }
+
+        nav ul li ul li a {
+            padding: 0.5em;
+            display: block;
+            color: #fff;
+        }
+
+        nav ul li ul {
+            left: auto;
+            right: 0;
+        }
+
+        nav ul li:hover>ul {
+            display: block;
+        }
+
+        .back-button {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border: none;
+            border-radius: 5px;
+            padding: 0.5em 1em;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            margin-left: 1em;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(to right, #feb47b, #ff7e5f);
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 2em;
+            background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h1 {
+            font-size: 2em;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container button {
+            width: 50%;
+            margin: auto 150px;
+            padding: 0.75em;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 1em;
+        }
+
+        .form-container button:hover {
+            background: linear-gradient(to right, #feb47b, #ff7e5f);
+        }
+
+        .form-container .receipt {
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 1em;
+            margin-top: 1em;
+            display: none;
+        }
+
+        .form-container .receipt-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        .form-container .receipt-details {
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>College Management System</span>
+        </div>
+        <ul>
+            <li>
+                <a href="#menu" onclick="toggleSubMenu(event, 'menu-submenu')">Menu</a>
+                <ul id="menu-submenu">
+                    <li><a href="#receipt">Receipt</a></li>
+                    <li><a href="#prospectus">Prospectus</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" onclick="toggleSubMenu(event, 'student-submenu')">Student Registration</a>
+                <ul id="student-submenu">
+                    <li>
+                        <a href="#" onclick="toggleSubMenu(event, 'merit-submenu')">Merit List</a>
+                    </li>
+                    <li><a href="#selected-student-form">Selected Student Form</a></li>
+                    <li><a href="#admission-receipt">Admission Receipt Generate</a></li>
+                </ul>
+            </li>
+            <li><a href="03.Menu.html" class="back-button">Back</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-container">
+        <h1>Selected Student Form</h1>
+        <form id="registration-form">
+            <label for="class">Class</label>
+            <select id="class" name="class" placeholder="Select a Class">
+                <option value="">Select Class</option>
+                <option value="BA-I">BA - I</option>
+                <option value="BA-II">BA - II</option>
+                <option value="BA-III">BA - III</option>
+                <option value="BSC-I">B.SC - I</option>
+                <option value="BSC-II">B.SC - II</option>
+                <option value="BSC-III">B.SC - III</option>
+                <option value="BCOM-I">B.COM - I</option>
+                <option value="BCOM-II">B.COM - II</option>
+                <option value="BCOM-III">B.COM - III</option>
+                <option value="MA-I-ECO">M.A - I (ECO)</option>
+                <option value="MA-II-ECO">M.A - II (ECO)</option>
+                <option value="MA-I-MAR">M.A - I (MAR)</option>
+                <option value="MA-II-MAR">M.A - II (MAR)</option>
+                <option value="MA-I-HIS">M.A - I (HIS)</option>
+                <option value="MA-II-HIS">M.A - II (HIS)</option>
+            </select>
+
+            <label for="cast-category">Cast Category</label>
+            <select id="cast-category" name="cast-category">
+                <option value="">Select Cast Category</option>
+                <option value="OBC">OBC</option>
+                <option value="OPEN">OPEN</option>
+                <option value="SBC">SBC</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+                <option value="VJ-A">VJ - A</option>
+                <option value="PH">PH</option>
+                <option value="NT-B">NT - B</option>
+                <option value="NT-C">NT - C</option>
+                <option value="NT-D">NT - D</option>
+            </select>
+
+            <label for="language">Compulsory Language</label>
+            <select id="language" name="language" required>
+                <option value="">Select Language</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Marathi">Marathi</option>
+            </select>
+
+            <label for="optional-subjects">Optional Subjects</label>
+            <select id="optional-subjects" name="optional-subjects">
+                <option value="">Select Optional Subjects</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Database Management Systems">Database Management Systems</option>
+                <option value="Data Analysis">Data Analysis</option>
+                <option value="Programming Languages">Programming Languages</option>
+                <option value="Introduction to Business">Introduction to Business</option>
+                <option value="Human Resource Management">Human Resource Management</option>
+                <option value="Marketing Management">Marketing Management</option>
+                <option value="Financial Management">Financial Management</option>
+                <option value="Operations Management">Operations Management</option>
+                <option value="Econometrics">Econometrics</option>
+                <option value="Development Economics">Development Economics</option>
+                <option value="International Economics">International Economics</option>
+                <option value="Public Finance">Public Finance</option>
+            </select>
+
+            <label for="medium">Medium</label>
+            <select id="medium" name="medium">
+                <option value="">Select Medium</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Marathi">Marathi</option>
+            </select>
+
+            <label for="mobile-no">Mobile No.</label>
+            <input type="tel" id="mobile-no" name="mobile-no" placeholder="Enter Mobile No." pattern="[0-9]{10}" required>
+
+            <label for="payment-mode">Payment Mode</label>
+            <select id="payment-mode" name="payment-mode">
+                <option value="">Select Payment Mode</option>
+                <option value="Cash">Cash</option>
+                <option value="Online">Online</option>
+                <option value="DD">DD</option>
+            </select>
+
+            <button type="submit" id="register-button">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleSubMenu(event, submenuId) {
+            event.preventDefault();
+            var submenu = document.getElementById(submenuId);
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.getElementById('registration-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = event.target;
+            var requiredFields = form.querySelectorAll('input[required], select[required]');
+
+            var allFieldsFilled = true;
+            requiredFields.forEach(function (field) {
+                if (!field.value) {
+                    allFieldsFilled = false;
+                    field.style.borderColor = 'red';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+
+            if (allFieldsFilled) {
+                alert('Admission Successfully Done');
+                form.reset();
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        });
+    </script>
+</body>
+
+</html>

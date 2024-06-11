@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Receipt Generator</title>
+    <style>
+        /* CSS for Nav Bar */
+        /* Your existing nav bar styles */
+        
+        /* CSS for Form Container */
+        /* Your existing form container styles */
+
+        /* Additional CSS for form input and button */
+        .form-container input[type="text"],
+        .form-container input[type="date"],
+        .form-container select {
+            width: calc(100% - 20px); /* Adjusting width to fit container */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <!-- Your existing nav bar code -->
+
+    <!-- Form Container -->
+    <div class="form-container">
+        <h1>Admission Receipt Generator</h1>
+        <form id="admission-receipt-form">
+            <label for="class">Class:</label>
+            <select id="class" name="class" required>
+                <option value="">Select Class</option>
+                <option value="BA-I">BA - I</option>
+                <option value="BA-II">BA - II</option>
+                <option value="BA-III">BA - III</option>
+                <option value="BSC-I">B.SC - I</option>
+                <option value="BSC-II">B.SC - II</option>
+                <option value="BSC-III">B.SC - III</option>
+                <option value="BCOM-I">B.COM - I</option>
+                <option value="BCOM-II">B.COM - II</option>
+                <option value="BCOM-III">B.COM - III</option>
+                <option value="MA-I-ECO">M.A - I (ECO)</option>
+                <option value="MA-II-ECO">M.A - II (ECO)</option>
+                <option value="MA-I-MAR">M.A - I (MAR)</option>
+                <option value="MA-II-MAR">M.A - II (MAR)</option>
+                <option value="MA-I-HIS">M.A - I (HIS)</option>
+                <option value="MA-II-HIS">M.A - II (HIS)</option>
+            </select>
+
+            <label for="first-name">First Name:</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter First Name" required>
+
+            <label for="middle-name">Middle Name:</label>
+            <input type="text" id="middle-name" name="middle-name" placeholder="Enter Middle Name" required>
+
+            <label for="last-name">Last Name:</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter Last Name" required>
+
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" placeholder="Full Name" readonly>
+
+            <label for="medium">Medium:</label>
+            <select id="medium" name="medium" required>
+                <option value="">Select Medium</option>
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Marathi">Marathi</option>
+            </select>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <button type="submit">Generate Receipt</button>
+        </form>
+
+        <!-- Receipt Display -->
+        <div id="admission-receipt" class="receipt">
+            <h2>Hutatma Jaywantrao Patil Mahavidyalaya</h2>
+            <p>Himayatnagar Tq. Himayatnagar, Dist. Nanded</p>
+            <p>Degree College</p>
+            <p>Recp. No: <span id="admission-receipt-number"></span></p>
+            <p>Date: <span id="admission-receipt-date"></span></p>
+            <p>Full Name: <span id="admission-student-name"></span></p>
+            <p>Class: <span id="admission-student-class"></span></p>
+            <p>Received the following:</p>
+            <table id="admission-receipt-items">
+                <tbody>
+                    <tr>
+                        <td>Prospectus Fees</td>
+                        <td>₹ <span id="admission-prospectus-fee">50</span></td>
+                    </tr>
+                    <tr>
+                        <td>Student Receipt</td>
+                        <td>₹ <span id="admission-student-fee">1200</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('admission-receipt-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var form = event.target;
+
+            var className = form.querySelector('#class').value;
+            var firstName = form.querySelector('#first-name').value;
+            var middleName = form.querySelector('#middle-name').value;
+            var lastName = form.querySelector('#last-name').value;
+            var medium = form.querySelector('#medium').value;
+            var date = form.querySelector('#date').value;
+
+            var fullName = firstName + ' ' + middleName + ' ' + lastName;
+            form.querySelector('#full-name').value = fullName;
+
+            var receiptNumber = generateReceiptNumber();
+
+            document.getElementById('admission-receipt-number').textContent = receiptNumber;
+            document.getElementById('admission-receipt-date').textContent = date;
+            document.getElementById('admission-student-name').textContent = fullName;
+            document.getElementById('admission-student-class').textContent = className;
+
+            // Displaying the receipt
+            document.getElementById('admission-receipt').style.display = 'block';
+        });
+
+        function generateReceiptNumber() {
+            // Generate a random number between 100000 and 999999
+            return 'REC' + Math.floor(Math.random() * 900000 + 100000);
+        }
+    </script>
+</body>
+
+</html>

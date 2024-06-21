@@ -7,8 +7,10 @@
     <title>CMS - Merit List</title>
     <style>
         body {
+            height: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
+            margin-bottom: 80px;
             padding: 0;
             background-image: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
             color: #2c3e50;
@@ -19,25 +21,25 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(25, 0, 10, 0.7);
-            padding: 1em;
+            padding: 0.5em 1em;
             z-index: 10;
             position: sticky;
             top: 0;
+            height: 60px;
         }
 
         .logo {
-            margin-left: 25px;
             display: flex;
             align-items: center;
         }
 
         .logo img {
-            height: 65px;
+            height: 40px;
             margin-right: 10px;
         }
 
         .logo span {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #eef2f6;
         }
@@ -51,7 +53,7 @@
 
         nav ul li {
             position: relative;
-            margin: 0 1em;
+            margin: 0 0.5em;
         }
 
         nav ul li a {
@@ -69,10 +71,10 @@
         nav ul li ul {
             display: none;
             position: absolute;
-            top: 2.5em;
+            top: 2em;
             left: 0;
             background: rgba(0, 0, 0, 0.8);
-            padding: 1em;
+            padding: 0.5em;
             border-radius: 5px;
             list-style: none;
             z-index: 20;
@@ -110,44 +112,43 @@
             color: #fff;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
             text-decoration: none;
-            margin-left: 1em;
         }
 
         .back-button:hover {
             background: linear-gradient(to right, #feb47b, #ff7e5f);
-            color: white;
         }
 
         .form-container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 2em;
+            max-width: 640px;
+            padding: 18px;
             background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            margin: 20px auto;
         }
 
         .form-container h1 {
-            font-size: 2.5em;
-            margin-bottom: 1em;
+            font-size: 30px;
             text-align: center;
             font-weight: bold;
-            color: #2c3e50;
-            font-family: 'Georgia', serif;
+            color: #050e18;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-top: 1px;
         }
 
         .form-container h2 {
-            font-size: 1.8em;
-            margin-bottom: 0.5em;
+            font-size: 2em;
             text-align: center;
             font-weight: bold;
             color: #34495e;
-            font-family: 'Trebuchet MS', sans-serif;
+            margin: 10px 0;
         }
 
         .form-container label {
+            font-size: 1.1em;
             display: block;
             margin-bottom: 0.5em;
             font-weight: bold;
@@ -161,10 +162,21 @@
             margin-bottom: 1em;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container .inline-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .form-container .inline-inputs input {
+            width: calc(50% - 10px);
         }
 
         .form-container button {
-            width: 48%;
+            width: 100%;
             padding: 0.75em;
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             border: none;
@@ -173,43 +185,23 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 1em;
-            margin-right: 4%;
+            margin-top: 1em;
         }
 
         .form-container button:hover {
             background: linear-gradient(to right, #feb47b, #ff7e5f);
         }
 
-        .form-container button:last-child {
-            margin-right: 0;
-        }
 
-        .form-container .receipt {
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            padding: 1em;
-            margin-top: 1em;
-            display: none;
-        }
-
-        .form-container .receipt-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 0.5em;
-        }
-
-        .form-container .receipt-details {
-            line-height: 1.5;
-        }
-
-        .form-container form {
+        .flex-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 0 auto;
         }
 
-        .form-container form>div {
-            width: 100%;
+        .flex-item {
+            flex: 1;
         }
     </style>
 </head>
@@ -224,7 +216,7 @@
             <li>
                 <a href="#menu" onclick="toggleSubMenu(event, 'menu-submenu')">Menu</a>
                 <ul id="menu-submenu">
-                    <li><a href="#receipt">Receipt</a></li>
+                    
                     <li><a href="#prospectus">Prospectus</a></li>
                     <li><a href="#registration">Registration</a></li>
                 </ul>
@@ -232,11 +224,9 @@
             <li>
                 <a href="#" onclick="toggleSubMenu(event, 'student-submenu')">Student Registration</a>
                 <ul id="student-submenu">
-                    <li>
-                        <a href="#" onclick="toggleSubMenu(event, 'merit-submenu')">Merit List</a>
-                    </li>
-                    <li><a href="#selected-student-form">Selected Student Form</a></li>
-                    <li><a href="#admission-receipt">Admission Receipt Generate</a></li>
+                    <li><a href="07.AdmissionProcess.html">Admission Process Form</a></li>
+                    <li><a href="06.MeritList.html">Merit List</a></li>  
+                    <li><a href="05.StudentResgForm.html">Selected Student Form</a></li>
                 </ul>
             </li>
             <li><a href="03.Menu.html" class="back-button">Back</a></li>
@@ -247,75 +237,103 @@
         <h1>Merit List</h1>
     </div>
 
-    <div class="form-container">
-        <h2>Merit List By Percentage</h2>
-        <form id="merit-list-by-percentage-form">
-            <label for="course">Course</label>
-            <select id="course" name="course" required>
-                <option value="">Select Course</option>
-                <option value="BA-I">BA - I</option>
-                <option value="BA-II">BA - II</option>
-                <option value="BA-III">BA - III</option>
-                <option value="BSC-I">B.SC - I</option>
-                <option value="BSC-II">B.SC - II</option>
-                <option value="BSC-III">B.SC - III</option>
-                <option value="BCOM-I">B.COM - I</option>
-                <option value="BCOM-II">B.COM - II</option>
-                <option value="BCOM-III">B.COM - III</option>
-                <option value="MA-I-ECO">M.A - I (ECO)</option>
-                <option value="MA-II-ECO">M.A - II (ECO)</option>
-                <option value="MA-I-MAR">M.A - I (MAR)</option>
-                <option value="MA-II-MAR">M.A - II (MAR)</option>
-                <option value="MA-I-HIS">M.A - I (HIS)</option>
-                <option value="MA-II-HIS">M.A - II (HIS)</option>
-            </select>
+    <div class="flex-container">
+        <div class="flex-item form-container">
+            <h2>Merit List By Percentage</h2>
+            <form id="merit-list-by-percentage-form">
+                <label for="course-percentage">Course</label>
+                <select id="course-percentage" name="course" required>
+                    <option value="">Select Course</option>
+                    <option value="BA-I">BA - I</option>
+                    <option value="BA-II">BA - II</option>
+                    <option value="BA-III">BA - III</option>
+                    <option value="BSC-I">B.SC - I</option>
+                    <option value="BSC-II">B.SC - II</option>
+                    <option value="BSC-III">B.SC - III</option>
+                    <option value="BCOM-I">B.COM - I</option>
+                    <option value="BCOM-II">B.COM - II</option>
+                    <option value="BCOM-III">B.COM - III</option>
+                    <option value="MA-I-ECO">M.A - I (ECO)</option>
+                    <option value="MA-II-ECO">M.A - II (ECO)</option>
+                    <option value="MA-I-MAR">M.A - I (MAR)</option>
+                    <option value="MA-II-MAR">M.A - II (MAR)</option>
+                    <option value="MA-I-HIS">M.A - I (HIS)</option>
+                    <option value="MA-II-HIS">M.A - II (HIS)</option>
+                </select>
 
-            <label for="medium">Medium</label>
-            <select id="medium" name="medium" required>
-                <option value="">Select Medium</option>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Marathi">Marathi</option>
-            </select>
+                <label for="medium-percentage">Medium</label>
+                <select id="medium-percentage" name="medium" required>
+                    <option value="">Select Medium</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Marathi">Marathi</option>
+                </select>
 
-            <label for="percentage">Percentage</label>
-            <input type="number" id="percentage" name="percentage" min="60" max="100" placeholder="Enter Percentage" required>
+                <label for="percentage-from">Percentage</label>
+                <div class="inline-inputs">
+                    <input type="number" id="percentage-from" name="percentage_from" min="60" max="100" placeholder="From" required>
+                    <input type="number" id="percentage-to" name="percentage_to" min="60" max="100" placeholder="To" required>
+                </div>
 
-            <button type="submit">Generate List</button>
-        </form>
-    </div>
+                <button type="submit">Generate List</button>
+            </form>
+        </div>
 
-    <div class="form-container">
-        <h2>Merit List By Cast Category</h2>
-        <form id="merit-list-by-cast-form">
-            <label for="cast">Cast</label>
-            <select id="cast" name="cast" required>
-                <option value="">Select Cast</option>
-                <option value="OBC">OBC</option>
-                <option value="OPEN">OPEN</option>
-                <option value="SBC">SBC</option>
-                <option value="SC">SC</option>
-                <option value="ST">ST</option>
-                <option value="VJ-A">VJ - A</option>
-                <option value="PH">PH</option>
-                <option value="NT-B">NT - B</option>
-                <option value="NT-C">NT - C</option>
-                <option value="NT-D">NT - D</option>
-            </select>
+        <div class="flex-item form-container">
+            <h2>Merit List By Cast Category</h2>
+            <form id="merit-list-by-cast-form">
+                <label for="cast">Cast</label>
+                <select id="cast" name="cast" required>
+                    <option value="">Select Cast</option>
+                    <option value="OBC">OBC</option>
+                    <option value="OPEN">OPEN</option>
+                    <option value="SBC">SBC</option>
+                    <option value="SC">SC</option>
+                    <option value="ST">ST</option>
+                    <option value="VJ-A">VJ - A</option>
+                    <option value="PH">PH</option>
+                    <option value="NT-B">NT - B</option>
+                    <option value="NT-C">NT - C</option>
+                    <option value="NT-D">NT - D</option>
+                </select>
 
-            <label for="medium-cast">Medium</label>
-            <select id="medium-cast" name="medium" required>
-                <option value="">Select Medium</option>
-                <option value="English">English</option>
-                <option value="Hindi">Hindi</option>
-                <option value="Marathi">Marathi</option>
-            </select>
+                <label for="course-cast">Course</label>
+                <select id="course-cast" name="course" required>
+                    <option value="">Select Course</option>
+                    <option value="BA-I">BA - I</option>
+                    <option value="BA-II">BA - II</option>
+                    <option value="BA-III">BA - III</option>
+                    <option value="BSC-I">B.SC - I</option>
+                    <option value="BSC-II">B.SC - II</option>
+                    <option value="BSC-III">B.SC - III</option>
+                    <option value="BCOM-I">B.COM - I</option>
+                    <option value="BCOM-II">B.COM - II</option>
+                    <option value="BCOM-III">B.COM - III</option>
+                    <option value="MA-I-ECO">M.A - I (ECO)</option>
+                    <option value="MA-II-ECO">M.A - II (ECO)</option>
+                    <option value="MA-I-MAR">M.A - I (MAR)</option>
+                    <option value="MA-II-MAR">M.A - II (MAR)</option>
+                    <option value="MA-I-HIS">M.A - I (HIS)</option>
+                    <option value="MA-II-HIS">M.A - II (HIS)</option>
+                </select>
 
-            <label for="percentage-cast">Percentage</label>
-            <input type="number" id="percentage-cast" name="percentage" min="35" max="100" placeholder="Enter Percentage" required>
+                <label for="medium-cast">Medium</label>
+                <select id="medium-cast" name="medium" required>
+                    <option value="">Select Medium</option>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Marathi">Marathi</option>
+                </select>
 
-            <button type="submit">Generate List</button>
-        </form>
+                <label for="percentage-cast-from">Percentage</label>
+                <div class="inline-inputs">
+                    <input type="number" id="percentage-cast-from" name="percentage_from" min="35" max="100" placeholder="From" required>
+                    <input type="number" id="percentage-cast-to" name="percentage_to" min="35" max="100" placeholder="To" required>
+                </div>
+
+                <button type="submit">Generate List</button>
+            </form>
+        </div>
     </div>
 
     <script>
@@ -327,32 +345,33 @@
 
         document.getElementById('merit-list-by-percentage-form').addEventListener('submit', function (event) {
             event.preventDefault();
-            var course = document.getElementById('course').value;
-            var medium = document.getElementById('medium').value;
-            var percentage = document.getElementById('percentage').value;
+            var course = document.getElementById('course-percentage').value;
+            var medium = document.getElementById('medium-percentage').value;
+            var percentageFrom = document.getElementById('percentage-from').value;
+            var percentageTo = document.getElementById('percentage-to').value;
 
-            if (!course || !medium || !percentage) {
+            if (!course || !medium || !percentageFrom || !percentageTo) {
                 alert('Please fill in all fields.');
                 return;
             }
 
             alert('Merit List by Percentage is being generated...');
-            // Code to generate merit list by percentage goes here
         });
 
         document.getElementById('merit-list-by-cast-form').addEventListener('submit', function (event) {
             event.preventDefault();
             var cast = document.getElementById('cast').value;
+            var course = document.getElementById('course-cast').value;
             var medium = document.getElementById('medium-cast').value;
-            var percentage = document.getElementById('percentage-cast').value;
+            var percentageFrom = document.getElementById('percentage-cast-from').value;
+            var percentageTo = document.getElementById('percentage-cast-to').value;
 
-            if (!cast || !medium || !percentage) {
+            if (!cast || !course || !medium || !percentageFrom || !percentageTo) {
                 alert('Please fill in all fields.');
                 return;
             }
 
             alert('Merit List by Cast Category is being generated...');
-            // Code to generate merit list by cast category goes here
         });
     </script>
 </body>

@@ -11,6 +11,10 @@
             padding: 0;
             background-image: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
             color: #932323;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
         }
 
         nav {
@@ -18,28 +22,31 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(25, 0, 10, 0.7);
-            padding: 1em;
-            position: sticky;
-            z-index: 10; /* Ensure nav is above other content */
+            padding: 0.5em 1em;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            height: 60px; /* Adjusted height */
         }
 
         .logo {
-            margin-left: 25px;
             display: flex;
             align-items: center;
         }
 
         .logo img {
-            height: 65px;
+            height: 40px; /* Adjusted logo height */
             margin-right: 10px;
         }
 
         .logo span {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Adjusted font size */
             font-weight: bold;
             color: #eef2f6;
         }
-
 
         nav ul {
             list-style-type: none;
@@ -50,7 +57,7 @@
 
         nav ul li {
             position: relative;
-            margin: 0 1em;
+            margin: 0 0.5em;
         }
 
         nav ul li a {
@@ -68,13 +75,13 @@
         nav ul li ul {
             display: none;
             position: absolute;
-            top: 2.5em;
+            top: 2em; /* Adjusted dropdown position */
             left: 0;
             background: rgba(0, 0, 0, 0.8);
-            padding: 1em;
+            padding: 0.5em; /* Adjusted padding */
             border-radius: 5px;
             list-style: none;
-            z-index: 20; /* Ensure submenu is above other content */
+            z-index: 30;
         }
 
         nav ul li ul li {
@@ -92,26 +99,42 @@
             color: #fff;
         }
 
-        /* Adjust submenu positioning */
         nav ul li ul {
             left: auto;
             right: 0;
         }
 
-        nav ul li:hover > ul {
+        nav ul li:hover>ul {
             display: block;
+        }
+
+        main {
+            margin-top: 70px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 1em;
+            padding: 1em;
+            overflow: hidden;
+            flex: 1;
         }
 
         section {
             position: relative;
-            padding: 2em;
+            padding: 1em;
+            margin: 0;
             text-align: center;
             background-size: cover;
             background-position: center;
-            margin: 1em;
             border-radius: 10px;
-            overflow: hidden;
             color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-width: 0;
+            overflow: hidden;
+            /* z-index: 30; Ensure section is below the submenu */
         }
 
         section::before {
@@ -128,15 +151,17 @@
         section h1, section p {
             position: relative;
             z-index: 1;
+            margin: 0.5em 0;
         }
 
         section h1 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
+            font-size: 1.2em;
         }
 
         section p {
-            font-size: 1.2em;
+            font-size: 0.9em;
+            max-width: 80%; /* Ensure text is contained within the section */
+            line-height: 1.2; /* Improve readability */
         }
 
         section h1 a {
@@ -144,9 +169,9 @@
             color: inherit; 
         }
 
-        /* section h1 a:hover {
-            color: #ff7e5f;  Add a hover effect if desired 
-        } */
+        section h1 a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -159,7 +184,6 @@
             <li>
                 <a href="#menu" onclick="toggleSubMenu(event, 'menu-submenu')">Menu</a>
                 <ul id="menu-submenu">
-                    <li><a href="#receipt">Receipt</a></li>
                     <li><a href="02.prospectus.html">Prospectus</a></li>
                     <li><a href="04.RegistrationPage.html">Registration</a></li>
                 </ul>
@@ -167,44 +191,48 @@
             <li>
                 <a href="#student-submenu" onclick="toggleSubMenu(event, 'student-submenu')">Student Registration</a>
                 <ul id="student-submenu">
+                    <li><a href="07.AdmissionProcess.html">Admission Process Form</a></li>
                     <li><a href="06.MeritList.html">Merit List</a></li>  
                     <li><a href="05.StudentResgForm.html">Selected Student Form</a></li>
-                    <li><a href="09.admissionReceiptGene.html">Admission Receipt Generate</a></li>
+                    
                 </ul>
             </li>
-            
+            <a href="02.login.html" style="color: white; text-decoration: none;
+            font-weight: bold;">Logout</a>
         </ul>
     </nav>
 
-    <section id="prospectus" style="background-image: url('receipt.jpg');">
-        <h1><a href="02.prospectus.html">Prospectus</a></h1>
-        <p>A college prospectus is a brochure outlining academic programs, campus life, and admissions information.</p>
-    </section>
+    <main>
+        <section id="prospectus" style="background-image: url('receipt.jpg');">
+            <h1><a href="02.prospectus.html">Prospectus</a></h1>
+            <p>A college prospectus is a brochure outlining academic programs, campus life, and admissions information.</p>
+        </section>
 
-    <section id="registration" style="background-image: url('collegeMenu.jpg');">
-        <h1><a href="04.RegistrationPage.html">Registration</a></h1>
-        <p>Form to register for courses or events.</p>
-    </section>
+        <section id="registration" style="background-image: url('collegeMenu.jpg');">
+            <h1><a href="04.RegistrationPage.html">Registration</a></h1>
+            <p>Form to register for courses or events.</p>
+        </section>
 
-    <section id="selected-registration-form" style="background-image: url('selected-registration-form.jpg');">
-        <h1>Selected Registration Form</h1>
-        <p>Form for students who have been selected.</p>
-    </section>
+        <section id="student-registration-form" style="background-image: url('selected-registration-form.jpg');">
+            <h1><a href="05.StudentResgForm.html">Student Registration Form</a></h1>
+            <p>Form for students who want to regester.</p>
+        </section>
 
-    <section id="merit-list" style="background-image: url('merit-list.jpg');">
-        <h1><a href="06.MeritList.html">Merit List</a></h1>
-        <p>Details about merit list based on percentage.</p>
-    </section>
+        <section id="admission-process-form" style="background-image: url('01.admission.jpg');">
+            <h1><a href="07.AdmissionProcess.html">Admission Process Form</a></h1>
+            <p>Form to generate admission receipt.</p>
+        </section>
 
-    <section id="admission-receipt" style="background-image: url('admission-receipt.jpg');">
-        <h1><a href="09.admissionReceiptGene.html">Admission Receipt Generate</a></h1>
-        <p>Form to generate admission receipt.</p>
-    </section>
+        <section id="merit-list" style="background-image: url('merit-list.jpg');">
+            <h1><a href="06.MeritList.html">Merit List</a></h1>
+            <p>Details about merit list based on percentage.</p>
+        </section>
 
-    <section id="login" style="background-image: url('login.jpg');">
-        <h1><a href="05.login.html">Login</a></h1>
-        <p>Login form for accessing the system.</p>
-    </section>
+        <section id="Selected-student-form" style="background-image: url('login.jpg');">
+            <h1><a href="08.SelectedStudentForm.html">Selected Student Form</a></h1>
+            <p>Form for students who have been Selected</p>
+        </section>
+    </main>
 
     <script>
         function toggleSubMenu(event, submenuId) {

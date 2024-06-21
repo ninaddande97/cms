@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CMS</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .auth-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .auth-link {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .auth-link:hover {
+            color: #0056b3;
+        }
+
+        .main-content {
+            display: flex;
+            padding: 2rem;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .image-container {
+            flex: 4;
+            height: 610px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info {
+            flex: 10;
+            height: 580px;
+            width: 900px;
+            /* max-width: calc(100% - 100px); */
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info h1 {
+            font-size: 2rem;
+            color: #343a40;
+            text-align: center;
+            margin-top: 0%;
+            margin-bottom: 1rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+            gap: 1rem;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            min-height: 100px;
+        }
+
+        .info-box h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #343a40;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p,
+        .info-box ul {
+            font-size: 1rem;
+            color: #343a40;
+            margin: 0;
+        }
+
+        .info-box ul {
+            padding-left: 1.5rem;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 10px;
+            /* justify-content: space-around; */
+            gap: 1.4rem;
+            /* margin-top: 1rem; */
+        }
+
+        .team-member {
+            /* text-align: center; */
+            max-width: 140px;
+        }
+
+        .team-member h3 {
+            font-size: 1.2rem;
+            color: #343a40;
+            margin: 0.4rem 0;
+        }
+
+        .team-member p {
+            font-size: 1rem;
+            color: #343a40;
+        }
+
+        .footer {
+            background: #2d3034;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-top: 0%;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+            <span>College Management System</span>
+        </div>
+        <div class="auth-links">
+            <a href="#" class="auth-link">About Us</a>
+            <a href="01.homePage.html" class="auth-link">Sign Up</a>
+            <a href="02.login.html" class="auth-link">Login</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="image-container">
+            <img src="2.college.jpg" alt="College Photo">
+        </div>
+        <div class="info">
+            <h1>About Us</h1>
+            <div class="info-grid">
+                <div class="info-box">
+                    <h2>Our Mission</h2>
+                    <p>At CMS, our mission is to revolutionize the way colleges and universities manage their daily operations. We aim to streamline administrative processes, and enhance the overall educational experience through innovative technology.</p>
+                </div>
+                <div class="info-box">
+                    <h2>What We Do</h2>
+                    <ul>
+                        <li>Student Information Management</li>
+                        <li>Academic Planning</li>
+                        <li>Faculty Management</li>
+                        <li>Communication Tools</li>
+                        <li>Financial Management</li>
+                        <li>Library Management</li>
+                        <li>Examination Management</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h2>Our Vision</h2>
+                    <p>We envision a future where educational institutions operate seamlessly,and administrative efficiency. Our goal is to empower colleges and universities to focus on delivering quality education and supporting student success.</p>
+                </div>
+                <div class="info-box">
+                    <h2>Why Choose CMS?</h2>
+                    <ul>
+                        <li>User-Friendly Interface</li>
+                        <li>Scalability</li>
+                        <li>Customization</li>
+                        <li>Data Security</li>
+                        <li>Support & Training</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    <h2>Meet the Team</h2>
+                    <div class="team">
+                        <div class="team-member">
+                            <h3>Ninad Dande</h3>
+                            <p>Software Test Engineer</p>
+                        </div>
+                        <div class="team-member">
+                            <h3>Shubham Jagnade</h3>
+                            <p>Software Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-box">
+                    <h2>Get in Touch</h2>
+                    <p><strong>Email:</strong> support@cms.com</p>
+            <p><strong>Phone:</strong> +1-234-567-890</p>
+            <p><strong>Address:</strong> 123 Academic Lane, Education City, State, ZIP</p>
+        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 CMS. All rights reserved.</p>
+        
+    </footer>
+</body>
+
+</html>

@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMS - Admission Receipt Generator</title>
     <style>
-        /* CSS styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-image: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);
             color: #932323;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            box-sizing: border-box;
         }
 
         nav {
@@ -20,24 +24,28 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(25, 0, 10, 0.7);
-            padding: 1em;
+            padding: 0.5em 1em;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
             z-index: 10;
-            position: sticky;
+            height: 60px; /* Adjusted height */
         }
 
         .logo {
-            margin-left: 25px;
             display: flex;
             align-items: center;
         }
 
         .logo img {
-            height: 65px;
+            height: 40px; /* Adjusted logo height */
             margin-right: 10px;
         }
 
         .logo span {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Adjusted font size */
             font-weight: bold;
             color: #eef2f6;
         }
@@ -51,7 +59,7 @@
 
         nav ul li {
             position: relative;
-            margin: 0 1em;
+            margin: 0 0.5em;
         }
 
         nav ul li a {
@@ -69,10 +77,10 @@
         nav ul li ul {
             display: none;
             position: absolute;
-            top: 2.5em;
+            top: 2em; /* Adjusted dropdown position */
             left: 0;
             background: rgba(0, 0, 0, 0.8);
-            padding: 1em;
+            padding: 0.5em; /* Adjusted padding */
             border-radius: 5px;
             list-style: none;
             z-index: 20;
@@ -110,79 +118,77 @@
             color: #fff;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em; /* Adjusted font size */
             text-decoration: none;
-            margin-left: 1em;
         }
 
         .back-button:hover {
             background: linear-gradient(to right, #feb47b, #ff7e5f);
-            color: white;
         }
 
         .form-container {
-            max-width: 600px;
-            margin: 100px auto;
-            padding: 2em;
+            max-width: 800px; /* Adjusted max-width */
+            width: 100%;
+            height: 600px;
+            padding: 60px; /* Adjusted padding */
             background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 65px; /* Adjusted margin to fit below navbar */
+            box-sizing: border-box;
         }
 
         .form-container h1 {
-            font-size: 2em;
-            margin-bottom: 1em;
+            font-size: 25px; /* Increased font size */
+            margin-bottom: 10px;
+            margin-top: 0.5px;
             text-align: center;
         }
 
         .form-container label {
             display: block;
-            margin-bottom: 0.5em;
+            margin-bottom: 12px;
             font-weight: bold;
+            font-size: 16px; /* Increased font size */
+        }
+
+        .form-container .group {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px; /* Adjusted gap for spacing */
+        }
+
+        .form-container .half-width {
+            width: 48%;
         }
 
         .form-container input,
         .form-container select {
             width: 100%;
-            padding: 0.5em;
-            margin-bottom: 1em;
+            padding: 8px; /* Increased padding */
+            margin-bottom: 7px; /* Increased margin */
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px; /* Increased font size */
         }
 
         .form-container button {
-            width: 48%;
-            padding: 0.75em;
+            width: 100%; /* Full width for button */
+            padding: 8px; /* Increased padding */
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             border: none;
             border-radius: 5px;
             color: #fff;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1em;
-            margin-right: 1%;
+            font-size: 18px;
+            margin-top: 5px; /* Adjusted margin */
+            margin-bottom: 0%;
         }
 
-        .form-container button:last-child {
-            margin-right: 0;
-        }
-
-        .form-container .receipt {
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            padding: 1em;
-            margin-top: 1em;
-            display: none;
-        }
-
-        .form-container .receipt-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 0.5em;
-        }
-
-        .form-container .receipt-details {
-            line-height: 1.5;
+        .form-container button:hover {
+            background: linear-gradient(to right, #feb47b, #ff7e5f);
         }
     </style>
 </head>
@@ -190,14 +196,14 @@
 <body>
     <nav>
         <div class="logo">
-            <img src="logo.png" alt="Logo"> 
-            <span>College Management System</span> 
+            <img src="logo.png" alt="Logo">
+            <span>College Management System</span>
         </div>
         <ul>
             <li>
                 <a href="#menu" onclick="toggleSubMenu(event, 'menu-submenu')">Menu</a>
                 <ul id="menu-submenu">
-                    <li><a href="#receipt">Receipt</a></li>
+                    
                     <li><a href="#prospectus">Prospectus</a></li>
                     <li><a href="#registration">Registration</a></li>
                 </ul>
@@ -205,11 +211,9 @@
             <li>
                 <a href="#" onclick="toggleSubMenu(event, 'student-submenu')">Student Registration</a>
                 <ul id="student-submenu">
-                    <li>
-                        <a href="#" onclick="toggleSubMenu(event, 'merit-submenu')">Merit List</a>
-                    </li>
-                    <li><a href="#selected-student-form">Selected Student Form</a></li>
-                    <li><a href="#admission-receipt">Admission Receipt Generate</a></li>
+                    <li><a href="07.AdmissionProcess.html">Admission Process Form</a></li>
+                    <li><a href="06.MeritList.html">Merit List</a></li>  
+                    <li><a href="05.StudentResgForm.html">Selected Student Form</a></li>
                 </ul>
             </li>
             <li><a href="03.Menu.html" class="back-button">Back</a></li>
@@ -239,11 +243,17 @@
                 <option value="MA-II-HIS">M.A - II (HIS)</option>
             </select>
 
-            <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="first-name" placeholder="Enter First Name" oninput="updateFullName()" required>
-
-            <label for="middle-name">Middle Name:</label>
-            <input type="text" id="middle-name" name="middle-name" placeholder="Enter Middle Name" oninput="updateFullName()" required>
+            <div class="group">
+                <div class="half-width">
+                    <label for="first-name">First Name:</label>
+                    <input type="text" id="first-name" name="first-name" placeholder="Enter First Name" oninput="updateFullName()" required>
+                </div>
+                <div class="half-width">
+                    <label for="middle-name">Middle Name:</label>
+                    <input type="text" id="middle-name" name="middle-name" placeholder="Enter Middle Name" oninput="updateFullName()" required>
+                </div>
+                
+            </div>
 
             <label for="last-name">Last Name:</label>
             <input type="text" id="last-name" name="last-name" placeholder="Enter Last Name" oninput="updateFullName()" required>
@@ -261,35 +271,9 @@
 
             <label for="date">Date:</label>
             <input type="date" id="date" name="date" required>
-            <button type="button" onclick="resetForm()">Reset</button>
+
             <button type="submit">Generate Receipt</button>
         </form>
-
-        <!-- Receipt Display -->
-        <div class="receipt" id="admission-receipt">
-            <div class="receipt-title">Admission Receipt</div>
-            <p>Hutatma Jaywantrao Patil Mahavidyalaya</p>
-            <p>Himayatnagar Tq. Himayatnagar, Dist. Nanded</p>
-            <p>Degree College</p>
-            <p>Recp. No: <span id="admission-receipt-number"></span></p>
-            <p>Date: <span id="admission-receipt-date"></span></p>
-            <p>Full Name: <span id="admission-student-name"></span></p>
-            <p>Class: <span id="admission-student-class"></span></p>
-            <p>Received the following:</p>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Prospectus Fees</td>
-                        <td>₹ <span id="admission-prospectus-fee">50</span></td>
-                    </tr>
-                    <tr>
-                        <td>Student Receipt</td>
-                        <td>₹ <span id="admission-student-fee">1200</span></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-        </div>
     </div>
 
     <script>
@@ -305,35 +289,6 @@
             var lastName = document.getElementById('last-name').value;
             var fullName = firstName + ' ' + middleName + ' ' + lastName;
             document.getElementById('full-name').value = fullName;
-        }
-
-        function resetForm() {
-            document.getElementById('admission-receipt-form').reset();
-            document.getElementById('admission-receipt').style.display = 'none';
-        }
-
-        document.getElementById('admission-receipt-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            var form = event.target;
-
-            var className = form.querySelector('#class').value;
-            var fullName = form.querySelector('#full-name').value;
-            var date = form.querySelector('#date').value;
-
-            var receiptNumber = generateReceiptNumber();
-
-            document.getElementById('admission-receipt-number').textContent = receiptNumber;
-            document.getElementById('admission-receipt-date').textContent = date;
-            document.getElementById('admission-student-name').textContent = fullName;
-            document.getElementById('admission-student-class').textContent = className;
-
-            // Displaying the receipt
-            document.getElementById('admission-receipt').style.display = 'block';
-        });
-
-        function generateReceiptNumber() {
-            // Generate a random number between 100000 and 999999
-            return 'REC' + Math.floor(Math.random() * 900000 + 100000);
         }
     </script>
 </body>

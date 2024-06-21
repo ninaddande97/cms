@@ -128,7 +128,7 @@
             background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-top: 65px;
+            margin-top: 60px;
             box-sizing: border-box;
         }
 
@@ -204,13 +204,11 @@
 
         .fees-table th,
         .fees-table td {
-            justify-content: center;
             text-align: left;
             padding: 8px;
         }
 
         .fees-table th {
-
             background-color: #f9f9f9;
             color: #333;
         }
@@ -223,7 +221,9 @@
             text-align: right;
         }
 
-
+        .form-container {
+            margin-top: 75px;
+        }
 
         .form-container label {
             display: block;
@@ -252,12 +252,9 @@
         .form-container .half-width {
             width: 48%;
         }
-
         .form-container button {
-            width: 100%;
-            /* Full width for button */
-            padding: 8px;
-            /* Adjusted padding */
+            width: 100%; /* Full width for button */
+            padding: 8px; /* Adjusted padding */
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             border: none;
             border-radius: 5px;
@@ -265,8 +262,7 @@
             font-weight: bold;
             cursor: pointer;
             font-size: 18px;
-            margin-top: 1px;
-            /* Adjusted margin */
+            margin-top: 1px; /* Adjusted margin */
             margin-bottom: 0%;
         }
 
@@ -286,7 +282,7 @@
             <li>
                 <a href="#menu" onclick="toggleSubMenu(event, 'menu-submenu')">Menu</a>
                 <ul id="menu-submenu">
-
+                    <li><a href="#receipt">Receipt</a></li>
                     <li><a href="#prospectus">Prospectus</a></li>
                     <li><a href="#registration">Registration</a></li>
                 </ul>
@@ -294,9 +290,11 @@
             <li>
                 <a href="#" onclick="toggleSubMenu(event, 'student-submenu')">Student Registration</a>
                 <ul id="student-submenu">
-                    <li><a href="07.AdmissionProcess.html">Admission Process Form</a></li>
-                    <li><a href="06.MeritList.html">Merit List</a></li>
-                    <li><a href="05.StudentResgForm.html">Selected Student Form</a></li>
+                    <li>
+                        <a href="#" onclick="toggleSubMenu(event, 'merit-submenu')">Merit List</a>
+                    </li>
+                    <li><a href="#selected-student-form">Selected Student Form</a></li>
+                    <li><a href="#admission-receipt">Admission Receipt Generate</a></li>
                 </ul>
             </li>
             <li><a href="03.Menu.html" class="back-button">Back</a></li>
@@ -305,14 +303,14 @@
 
     <div class="form-container">
         <h1>Admission Process</h1>
-        <form id="feeForm" onsubmit="validateForm(event)">
+        <form id="feeForm">
             <div class="group">
                 <div class="half-width">
-                    <label for="course">Course</label>
+                    <label for="course">Course:</label>
                     <select id="course" name="course" onchange="populateFees()">
-                        <option value="select-course">Select Course</option>
+                        <option value="">Select Course</option>
                         <option value="BA">B.A</option>
-                        <option value="BCom">B.Com</option>
+                        <option value="BCom">B.Com FY</option>
                         <option value="BSc">B.Sc</option>
                     </select>
                 </div>
@@ -379,16 +377,16 @@
                     <label for="percentage">Percentage</label>
                     <input type="text" id="percentage" name="percentage" placeholder="Enter Percentage">
                 </div>
-                <!-- <div class="half-width">
+                <div class="half-width">
                     <label for="division">Division</label>
                     <input type="text" id="division" name="division" placeholder="Enter Division">
-                </div> -->
-
+                </div>
+                
             </div>
             <div class="group">
                 <div class="half-width">
                     <label for="aadhar">Aadhar Number</label>
-                    <input type="text" id="aadhar" name="aadhar" placeholder="Enter your aadhar number" maxlength="12">
+                    <input type="text" id="aadhar" name="aadhar" placeholder="Enter your aadhar number">
                 </div>
                 <div class="half-width">
                     <label for="email">Email Id</label>
@@ -396,14 +394,13 @@
                 </div>
                 <div class="half-width">
                     <label for="phoneNumber">Phone Number</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number"
-                        maxlength="10">
+                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
                 </div>
                 <div class="half-width">
                     <label for="dateOfBirth">Date of Birth</label>
                     <input type="date" id="dateOfBirth" name="dateOfBirth">
                 </div>
-
+                
             </div>
             <div class="group">
                 <div class="half-width">
@@ -444,17 +441,16 @@
                     <thead>
                         <tr>
                             <th>Fees Head</th>
-                            <th>Amount (INR)</th>
+                            <th>Amount (₹)</th>
                         </tr>
                     </thead>
                     <tbody id="studentFeesItems"></tbody>
                 </table>
             </div>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Register</button>
     </div>
     <script>
-
         const feesData = {
             "BA": {
                 "Registration Fee": 20,
@@ -579,35 +575,6 @@
             }
             calculateStudentFeeHead();
         }
-        document.getElementById('feeForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            var form = event.target;
-            var requiredFields = form.querySelectorAll('input[required], select[required]');
-            var isValid = true;
-
-            requiredFields.forEach(function (field) {
-                if (!field.value) {
-                    isValid = false;
-                    field.style.borderColor = 'red';
-                } else {
-                    field.style.borderColor = '';
-                }
-            });
-
-            if (isValid) {
-                alert('Admission Successfully Done');
-                form.reset();
-            } else {
-                alert('Please fill out all required fields.');
-            }
-        });
-
-        document.getElementById('feeForm').addEventListener('input', function (event) {
-            var field = event.target;
-            if (field.value) {
-                field.style.borderColor = '';
-            }
-        });
 
         function calculateStudentFeeHead() {
             const totalFees = parseFloat(document.getElementById("totalFees").value);
